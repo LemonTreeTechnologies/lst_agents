@@ -1,5 +1,7 @@
 """Strategy for the lst agent."""
 
+import re
+import html
 from typing import Any, cast
 from pathlib import Path
 from textwrap import dedent
@@ -46,6 +48,11 @@ ROOT = Path(__file__).parent.parent.parent.parent
 GAS_PREMIUM = 1.2  # multiplier to add to the gas price
 TX_MINING_TIMEOUT = 300  # seconds
 TXN_ATTEMPTS = 3  # number of attempts to send a transaction
+
+
+def esc_md2(s: str) -> str:
+    """Escape to md2."""
+    return re.sub(r"([_*\[\]()~`>#+\-=|{}.!])", r"\\\1", s)
 
 
 def retry_decorator(attempts: int = TXN_ATTEMPTS):
@@ -290,16 +297,19 @@ class TransactionSettler(Model):
             11155111: "https://sepolia.etherscan.io/tx/",
             10200: "https://gnosis-chiado.blockscout.com/tx/",
         }
-        self.send_notification_to_user(
-            msg=dedent(
-                f"""
-            Function: {function.__name__}
-            Contract: {contract_address}
-            [Transaction]({chain_id_to_explorer.get(ledger_api.api.eth.chain_id, '')}{tx_hash.hex()})
-            """,
-            ),
-            title="New txn executed!",
-        )
+
+        args = {k: esc_md2(v) for k, v in kwargs.items() if k != "attempts"}
+        stringified_args = ", ".join(f"{k}={v}" for k, v in args.items())
+
+        url = chain_id_to_explorer.get(ledger_api.api.eth.chain_id, "") + tx_hash.hex()
+        msg = dedent(f"""\
+        <b>Function:</b> <code>{html.escape(function.__name__)}</code><br/>
+        <b>Contract:</b> <code>{html.escape(contract_address)}</code><br/>
+        <b>Kwargs:</b><br/><pre><code>{html.escape(stringified_args)}</code></pre>
+        <a href="{html.escape(url)}">Transaction</a>
+        """)
+        self.log.info(msg)
+        self.send_notification_to_user(title="New txn executed!", msg=msg)
         return True
 
     @property
