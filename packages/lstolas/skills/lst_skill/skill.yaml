@@ -79,11 +79,11 @@ models:
       layer_2_rpc_endpoint: https://rpc.chiadochain.net
       layer_2_amb_home: '0x8448E15d0e706C0298dECA99F0b4744030e59d7d'
       layer_2_amb_helper: '0x3cc500B3c01D04C265c9293cB35BA2Fd8eA6dc1b'
-      lst_collector_address: '0x5E082F4a01b842f5E8b5b39CE74fa8E6198fCc22'
-      lst_unstake_relayer_address: '0xD580DDa6a97F9d69FC80900d7fef3b1aFFAF4cB5'
-      lst_distributor_address: '0x7dCb187ECD8D21EE2bb61a14AA1d6E0b8e5F6553'
-      lst_staking_manager_address: '0x4f0c7c6F065486232CC958B4C4239aFBe330824F'
-      lst_staking_processor_l2_address: '0xA922870211ceD3cFC93C5DEc4d15f125E8994f3E'
+      lst_collector_address: '0xDc8d29E1a9e64E847F653eA76baEFA2610b8bC85'
+      lst_unstake_relayer_address: '0x75Af4B29C79CfC8f2C4E21B7522b3e5eC0d18E5f'
+      lst_distributor_address: '0x99817C87A9E85E30632365D288e4833cD2003B8b'
+      lst_staking_manager_address: '0xc6c586763399A5716c91961F0D208928a9950ba2'
+      lst_staking_processor_l2_address: '0x7341bff68aa4F93E636C9D88AaA7c9E6dceD527d'
     class_name: LstStrategy
   tx_settler:
     args: {}
