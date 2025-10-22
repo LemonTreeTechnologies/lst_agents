@@ -1,6 +1,7 @@
 """Checkpoint Round behaviour class."""
 
 from typing import cast
+from textwrap import dedent
 
 from aea_ledger_ethereum import Address
 
@@ -26,7 +27,7 @@ class CheckpointRound(BaseState):
             if not self.tx_settler.build_and_settle_transaction(
                 contract_address=current_staking_proxy,
                 function=self.strategy.lst_staking_token_locked.checkpoint,
-                ledger_api=self.strategy.layer_1_api,
+                ledger_api=self.strategy.layer_2_api,
             ):
                 self.log.error("Transaction failed to be sent...")
                 self._event = LstabciappEvents.FATAL_ERROR
@@ -49,6 +50,11 @@ class CheckpointRound(BaseState):
         unique_staking_proxies = {event.args.stakingProxy for event in all_events.events}
 
         for staking_proxy in unique_staking_proxies:
+            if not self.strategy.lst_staking_token_locked.get_num_service_ids(
+                self.strategy.layer_2_api,
+                staking_proxy,
+            ).get("int"):
+                continue
             last_checkpoint = cast(
                 int,
                 self.strategy.lst_staking_token_locked.ts_checkpoint(
@@ -65,6 +71,13 @@ class CheckpointRound(BaseState):
             )
 
             if current_block_ts - last_checkpoint > liveness_period:
-                self.log.info(f"Checkpoint needed for staking proxy {staking_proxy}.")
+                self.log.info(
+                    dedent(
+                        f"""Checkpoint needed for staking proxy {staking_proxy}.
+                        Last checkpoint at  `{last_checkpoint}`.
+                        Liveness period is  `{liveness_period}` seconds.
+                        Current time is     `{current_block_ts}`."""
+                    )
+                )
                 self.callable_staking_proxies.append(staking_proxy)
         return len(self.callable_staking_proxies) > 0
