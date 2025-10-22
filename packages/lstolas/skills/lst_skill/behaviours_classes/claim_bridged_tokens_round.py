@@ -123,7 +123,7 @@ class ClaimBridgedTokensRound(BaseState):
         raw_logs = [log for log in receipt["logs"] if log["address"].lower() == self.strategy.layer_2_amb_home.lower()]
         decoded_events = []
         for raw_log in raw_logs:
-            event_abi = topic_to_eventabi[raw_log["topics"][0].hex()]  # pyright: ignore
+            event_abi = topic_to_eventabi[to_hex(hexstr=raw_log["topics"][0].hex())]  # pyright: ignore
             decoded = get_event_data(self.strategy.layer_2_api.api.codec, event_abi, raw_log)
             decoded_events.append(hexify(decoded))
         return decoded_events

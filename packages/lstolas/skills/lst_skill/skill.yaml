@@ -13,8 +13,8 @@ fingerprint:
   behaviours_classes/__init__.py: bafybeigfxtbzqrsrmdkw4xiqtryjszmonoa7fe3dkw4c3dmqwj7m7ynt3y
   behaviours_classes/base_behaviour.py: bafybeibt7wqatpktq36n66krinjuewkskb2tu4efssgz433r4xrjzuk56m
   behaviours_classes/check_any_work_round.py: bafybeibiop4dwotqngxqd4vdw2x4iz4b44m6urx4flvok6tdkaytwkdwzu
-  behaviours_classes/checkpoint_round.py: bafybeia6xv7cta3w6mq7fbxc475ahsi7f7lrabekpptajnz7vnnou3oq2u
-  behaviours_classes/claim_bridged_tokens_round.py: bafybeidvj2nqqhm2yxw433tilrgn5k4craf3d2ixbaa3ca2rxwtp5v7ska
+  behaviours_classes/checkpoint_round.py: bafybeidyppcubj6fbyzpnorzsh5jo6hlwvhogjzhrxylsyeouu5xd4aryq
+  behaviours_classes/claim_bridged_tokens_round.py: bafybeiac2wbgj55fw5c577jzmp4c5g3bbiq2ifnrdfcn6wgppib6a64mta
   behaviours_classes/claim_reward_tokens_round.py: bafybeigzfqweoglatgr4fs6tdunrw2z2wekwgqxr3ls2z6xbqy2rx6xeye
   behaviours_classes/error_rounds.py: bafybeihtghxlbb5k6s4egdibglto7h43xk3fz7vclhrizncq5vkwzlsqu4
   behaviours_classes/finalize_bridged_tokens_round.py: bafybeifnxckqnez2apllpwlxj6rvrfat732xhorhqle3aut6wl2dr7ekxu
@@ -25,7 +25,7 @@ fingerprint:
   dialogues.py: bafybeigbpewv7jsbyaybassv47sxk7bmvbl5pg25v2inr5gc6djch75rmi
   events_processing.py: bafybeihvdc6qwmzk6pizpuwhdjb7whtevt25uicjeghxzem2qtjko2biom
   handlers.py: bafybeigxyhzux4czjkaqntqmnjcfidchf2h6sitvxx6dknpwmoucbojqgq
-  models.py: bafybeieloc2vda6ig647sh3mwht7sxb2oeik2z4i5v2ess3rl4bsohrj6a
+  models.py: bafybeiafdeqbhy744u3ezaf3adirrma3sf42yodgznyb6bn5mghjkm6bte
   tests/__init__.py: bafybeigb2ji4vkcap3hokcedggjwsrah7te2nxjhkorwf3ibwgyaa2glma
   tests/test_check_work_behaviour.py: bafybeib45mbpf7ctr5aoyltwh34pljwpsh5zqentdqxerfkqx4tqhsg5h4
   tests/test_conditional_behaviours.py: bafybeihwvaz6m35f5pn4aumn4sme7gul57en7r56cbt5ovgtfm2ljjmmxu
@@ -79,11 +79,11 @@ models:
       layer_2_rpc_endpoint: https://rpc.chiadochain.net
       layer_2_amb_home: '0x8448E15d0e706C0298dECA99F0b4744030e59d7d'
       layer_2_amb_helper: '0x3cc500B3c01D04C265c9293cB35BA2Fd8eA6dc1b'
-      lst_collector_address: '0x5aD1BB8AFa97bD24Cd54d03f87649791Ea9e69AE'
-      lst_unstake_relayer_address: '0x789B8c39EFEc3bCaB1DB232eC4a86E5ae2797d27'
-      lst_distributor_address: '0x9D54Ce975f9B2aeF50a999f98C247a8a7b1cC24b'
-      lst_staking_manager_address: '0xd1fC5dab8BBbCCABe00d9d72b4D7b72677526cC2'
-      lst_staking_processor_l2_address: '0x195c34FfbEB3dF49E3e14aa8a2D23DDAf167c096'
+      lst_collector_address: '0xDc8d29E1a9e64E847F653eA76baEFA2610b8bC85'
+      lst_unstake_relayer_address: '0x75Af4B29C79CfC8f2C4E21B7522b3e5eC0d18E5f'
+      lst_distributor_address: '0x99817C87A9E85E30632365D288e4833cD2003B8b'
+      lst_staking_manager_address: '0xc6c586763399A5716c91961F0D208928a9950ba2'
+      lst_staking_processor_l2_address: '0x7341bff68aa4F93E636C9D88AaA7c9E6dceD527d'
     class_name: LstStrategy
   tx_settler:
     args: {}
