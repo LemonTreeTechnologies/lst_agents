@@ -1,0 +1,9 @@
+# simple dockerfile to run the included image
+services:
+  agent:
+    build: .
+    volumes:
+      - ./ethereum_private_key.txt:/app/ethereum_private_key.txt:ro
+    environment:
+      - APPRISE_ENDPOINT=${APPRISE_ENDPOINT}
+    restart: always
