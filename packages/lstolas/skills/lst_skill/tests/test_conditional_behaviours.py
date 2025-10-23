@@ -1,7 +1,8 @@
 """Test the metrics skill."""
 
-from typing import cast
+from typing import TYPE_CHECKING, cast
 from pathlib import Path
+from datetime import datetime
 
 from aea.test_tools.test_skill import BaseSkillTestCase
 
@@ -12,11 +13,14 @@ from packages.lstolas.skills.lst_skill.behaviours import (
 from packages.lstolas.skills.lst_skill.behaviours_classes.redeem_round import RedeemRound
 from packages.lstolas.skills.lst_skill.behaviours_classes.base_behaviour import BaseState, LstabciappStates
 from packages.lstolas.skills.lst_skill.behaviours_classes.checkpoint_round import CheckpointRound
-from packages.lstolas.skills.lst_skill.behaviours_classes.trigger_l2_to_l1_bridge import TriggerL2ToL1BridgeRound
 from packages.lstolas.skills.lst_skill.behaviours_classes.claim_reward_tokens_round import ClaimRewardTokensRound
 from packages.lstolas.skills.lst_skill.behaviours_classes.claim_bridged_tokens_round import (
     ClaimBridgedTokensRound,
 )
+
+
+if TYPE_CHECKING:
+    from packages.lstolas.skills.lst_skill.behaviours_classes.trigger_l2_to_l1_bridge import TriggerL2ToL1BridgeRound
 
 
 ROOT_DIR = Path(__file__).parent.parent.parent.parent.parent.parent
@@ -65,8 +69,8 @@ class TestTriggerL2ToL1Bridge(BaseTestConditionalBehaviour):
         """Setup the test class."""
         super().setup_class()
         behaviour_to_test = LstabciappStates.TRIGGERL2TOL1BRIDGEROUND
-        cls.behaviour = cast(
-            TriggerL2ToL1BridgeRound, cls._skill.skill_context.behaviours.main.get_state(behaviour_to_test.value)
+        cls.behaviour: TriggerL2ToL1BridgeRound = cls._skill.skill_context.behaviours.main.get_state(  # type: ignore
+            behaviour_to_test.value
         )
         cls.logger = cls._skill.skill_context.logger
 
@@ -74,6 +78,21 @@ class TestTriggerL2ToL1Bridge(BaseTestConditionalBehaviour):
         """Test the initialization of the strategy."""
         self.behaviour.is_triggered()
         self.behaviour.act()
+
+    def test_will_only_trigger_once_per_day(self):
+        """Test that the behaviour only triggers once per day."""
+        # First trigger should be True
+        self.behaviour.last_run_datetime = None
+        assert self.behaviour.last_run_datetime is None
+        assert self.behaviour.has_already_run_today() is False
+
+        # Simulate that it has run today
+        self.behaviour.last_run_datetime = datetime.utcnow()  # noqa: DTZ003
+        assert self.behaviour.has_already_run_today() is True
+
+        # simulate that it ran yesterday
+        self.behaviour.last_run_datetime = datetime.utcnow().replace(day=datetime.utcnow().day - 1)  # noqa: DTZ003
+        assert self.behaviour.has_already_run_today() is False
 
 
 class TestFinalizeBridgedTokens(BaseTestConditionalBehaviour):
