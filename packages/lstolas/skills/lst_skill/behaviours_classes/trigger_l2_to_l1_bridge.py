@@ -2,6 +2,7 @@
 
 from enum import Enum
 from typing import cast
+from datetime import datetime
 
 from pydantic import BaseModel
 from aea_ledger_ethereum import Address
@@ -37,6 +38,7 @@ class TriggerL2ToL1BridgeRound(BaseState):
     _state = LstabciappStates.TRIGGERL2TOL1BRIDGEROUND
     current_operation: TriggerOperations | None = None
     current_balance: BalanceResponse | None = None
+    last_run_datetime: datetime | None = None
 
     def act(self) -> None:
         """Perform the act."""
@@ -58,10 +60,22 @@ class TriggerL2ToL1BridgeRound(BaseState):
         else:
             self._event = LstabciappEvents.DONE
         self._is_done = True
+        self.last_run_datetime = datetime.utcnow()  # noqa: DTZ003
+
+    def has_already_run_today(self) -> bool:
+        """Check if the behaviour has run today.
+        Only trigger after 02:00 UTC.
+        """
+        if self.last_run_datetime is None:
+            return False
+        now_utc = datetime.utcnow()  # noqa: DTZ003
+        return bool(now_utc.date() == self.last_run_datetime.date() and now_utc.hour >= 2)
 
     def is_triggered(self) -> bool:
         """Check if the state is triggered."""
-        # Implement the condition to trigger this state
+        if self.has_already_run_today():
+            self.log.info("Bridge has already been triggered today, skipping.")
+            return False
         self.current_balance, self.current_operation = None, None
         min_olas_balance = self.get_min_olas_balance()
         if not min_olas_balance:
