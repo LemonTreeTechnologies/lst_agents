@@ -94,4 +94,7 @@ metadata:
 typecheck:
 	poetry run pyright packages/lstolas/skills/lst_skill/
 
+release:
+	poetry run adev release
+
 all: fmt lint typecheck test
