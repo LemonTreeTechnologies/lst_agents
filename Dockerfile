@@ -23,6 +23,8 @@ RUN --mount=type=cache,target=/tmp/poetry_cache \
 # ---- Runtime ----
 FROM python:3.11-slim AS runtime
 
+RUN apt-get update -y && apt-get install curl -y
+
 ENV VIRTUAL_ENV=/app/.venv \
     PATH="/app/.venv/bin:$PATH"
 
