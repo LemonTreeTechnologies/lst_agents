@@ -1,5 +1,11 @@
 # Changelog
 
+## [v0.1.2](https://github.com/StationsStation/lst_agents/tree/v0.1.2) (2025-10-24)
+
+**Merged pull requests:**
+
+- feat/prod agent [\#19](https://github.com/StationsStation/lst_agents/pull/19)
+
 ## [v0.1.1](https://github.com/StationsStation/lst_agents/tree/v0.1.1) (2025-10-23)
 
 **Merged pull requests:**
