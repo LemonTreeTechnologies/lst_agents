@@ -8,7 +8,7 @@ fingerprint:
   logger_setup.py: bafybeicboqnvizlhdsnmlncvayrswskbyw6vshi34bnrs75qshbz3wdlqu
   no-queue-logging.yaml: bafybeib6k2usocdkxtz6nqa2igxbwkp7f72inrsxtufyy3pttpbojxysay
   tests/__init__.py: bafybeibk76alseqt3ufreyev7rnz5zuk6dcftt7c2ob54gmhpt6xrhkg2y
-  tests/test_agent.py: bafybeihdawt3eoipfhkdwx2d4hf2lwzznwsysc7t66zcuqn45ifdi5sf54
+  tests/test_agent.py: bafybeicyppqui4vd7vo2s4kbgaposbtckwp76t3bjeoztjhcwlxqe7woxm
 fingerprint_ignore_patterns: []
 connections:
 - eightballer/http_client:0.1.0:bafybeiaz5auftwxpt4czrmeeesggqlkc2kosmetq6adrebeu6g7bkhqc2u
