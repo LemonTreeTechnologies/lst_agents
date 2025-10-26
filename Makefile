@@ -58,7 +58,7 @@ fmt:
 
 test: clean
 	poetry run autonomy packages lock
-	poetry run adev -v test
+	poetry run adev -n 1 -v test
 
 install:
 	@echo "Setting up Git hooks..."

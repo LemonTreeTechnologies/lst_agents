@@ -88,6 +88,8 @@ class LstStrategy(Model):
 
     layer_1_api: EthereumApi
     layer_2_api: EthereumApi
+    layer_1_starting_block: int
+    layer_2_starting_block: int
 
     # lst contract addresses
     lst_collector_address: Address
@@ -106,6 +108,8 @@ class LstStrategy(Model):
         """Initialize the strategy of the lst agent."""
         self.layer_1_api = EthereumApi(address=kwargs.pop("layer_1_rpc_endpoint"))
         self.layer_2_api = EthereumApi(address=kwargs.pop("layer_2_rpc_endpoint"))
+        self.layer_1_starting_block = kwargs.pop("l1_starting_block")
+        self.layer_2_starting_block = kwargs.pop("l2_starting_block")
 
         self.lst_collector_address = kwargs.pop("lst_collector_address")
         self.lst_unstake_relayer_address = kwargs.pop("lst_unstake_relayer_address")

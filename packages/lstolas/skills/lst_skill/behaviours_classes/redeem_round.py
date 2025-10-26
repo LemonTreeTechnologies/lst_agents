@@ -78,7 +78,9 @@ class RedeemRound(BaseState):
             dictionary=self.strategy.lst_staking_processor_l2_contract.get_request_queued_events(
                 self.strategy.layer_2_api,
                 self.strategy.lst_staking_processor_l2_address,
-                from_block=17590111 if self.last_completed_block is None else self.last_completed_block,
+                from_block=self.strategy.layer_2_starting_block
+                if self.last_completed_block is None
+                else self.last_completed_block,
             )
         )
         self.last_scanned_block = queued_requests.to_block
