@@ -155,7 +155,7 @@ class LstStakingTokenLocked(Contract):
         """Handler method for the 'map_service_info' requests."""
         instance = cls.get_instance(ledger_api, contract_address)
         result = instance.functions.mapServiceInfo(var_0).call()
-        return {"multisig": result, "owner": result, "tsStart": result, "reward": result}
+        return {"multisig": result[0], "owner": result[1], "tsStart": result[2], "reward": result[3]}
 
     @classmethod
     def max_num_services(

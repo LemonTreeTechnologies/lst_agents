@@ -60,7 +60,9 @@ class ClaimBridgedTokensRound(BaseState):
 
         events = EventsPayload(
             dictionary=self.strategy.lst_collector_contract.get_tokens_relayed_events(
-                self.strategy.layer_2_api, self.strategy.lst_collector_address, from_block=17590111
+                self.strategy.layer_2_api,
+                self.strategy.lst_collector_address,
+                from_block=self.strategy.layer_2_starting_block,
             ),
         )
         l2_to_l1_events = {}
@@ -79,7 +81,7 @@ class ClaimBridgedTokensRound(BaseState):
                 dictionary=self.strategy.amb_mainnet_contract.get_relayed_message_events(
                     self.strategy.layer_1_api,
                     self.strategy.layer_1_amb_home,
-                    from_block=9123229,
+                    from_block=self.strategy.layer_1_starting_block,
                     message_id=message_id,
                 ),
             )

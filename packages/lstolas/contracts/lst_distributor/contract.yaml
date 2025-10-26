@@ -7,8 +7,8 @@ license: Apache-2.0
 aea_version: '>=1.0.0, <2.0.0'
 fingerprint:
   __init__.py: bafybeihpnu7q76mqvdu5k2mtocg7ynhfpf5lp6tncexrzzcfleozaz6fna
-  build/lst_distributor.json: bafybeid6utdcft3pfohs7hetmhagixup2q5d67kd6p4uqw2xzjobzeuodq
-  contract.py: bafybeierwpu5qocpk5sv6kxtxfhfk5nfy2grr56glcekouufcrel3e3yxm
+  build/lst_distributor.json: bafybeicdcxtjcgwklqbdic2haptjq44wy2eqabpxuofimgvwjxiaozhdne
+  contract.py: bafybeiebftuorsr32sseox2ab3ip4wi6uecemai4n3ki52klfcyx73xlnu
   tests/test_lst_distributor.py: bafybeigvlwmg5vqxp3y3hmkztbbhpld7tu5n4h7onv5l73tl5uy2w2y6xu
 fingerprint_ignore_patterns: []
 class_name: LstDistributor

@@ -7,8 +7,8 @@ license: Apache-2.0
 aea_version: '>=1.0.0, <2.0.0'
 fingerprint:
   __init__.py: bafybeibgapbmjuxf26oygk4t3ixjg54sy22qsyq3vteockverfpug5xbpa
-  build/lst_staking_processor_l2.json: bafybeidcxnv7zq7h37z7thc7p2ahoadrzy34ex6lxywiz5hvgkjgubga7a
-  contract.py: bafybeie5zh2k7s5c5u4fcnxcw2srf6l44yvmxmraoeylckynycy3gmf5ay
+  build/lst_staking_processor_l2.json: bafybeiflf4gau27eigbutxlybbqiywqpfnhjqqm4c2gpl2y22p4dzvlt6m
+  contract.py: bafybeie6nbhpwzxjpucvirrarwiope23rc4hagu4y2ci7tfusxt6js7wv4
   tests/test_lst_staking_processor_l2.py: bafybeig76yjwslj4gwzzrb5qinam5ajh5oh44mpigmwt5aoku5kygq65ni
 fingerprint_ignore_patterns: []
 class_name: LstStakingProcessorL2

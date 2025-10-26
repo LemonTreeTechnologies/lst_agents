@@ -42,7 +42,7 @@ class CheckpointRound(BaseState):
         raw_events = self.strategy.lst_staking_manager_contract.get_staked_events(
             self.strategy.layer_2_api,
             self.strategy.lst_staking_manager_address,
-            from_block=17497117,
+            from_block=self.strategy.layer_2_starting_block,
         )
 
         all_events = EventsPayload(dictionary=raw_events)

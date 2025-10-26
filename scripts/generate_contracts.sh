@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+set -eu
 
 function generate_contracts() {
     local abi_path=$1
@@ -10,10 +11,10 @@ function generate_contracts() {
     adev scaffold contract --from-abi "$abi_path" "${contract_author}/${contract_name}"
 }
 
-generate_contracts ../olas-lst/out/StakingTokenLocked.sol/StakingTokenLocked.json lst_staking_token_locked
-generate_contracts ../olas-lst/out/Collector.sol/Collector.json lst_collector
-generate_contracts ../olas-lst/out/ActivityModule.sol/ActivityModule.json lst_activity_module
-generate_contracts ../olas-lst/out/Distributor.sol/Distributor.json lst_distributor
-generate_contracts ../olas-lst/out/UnstakeRelayer.sol/UnstakeRelayer.json lst_unstake_relayer
-generate_contracts ../olas-lst/out/DefaultStakingProcessorL2.sol/DefaultStakingProcessorL2.json lst_staking_processor_l2
-generate_contracts ../olas-lst/out/StakingManager.sol/StakingManager.json lst_staking_manager
+generate_contracts ../olas-lst/abis/0.8.30/StakingTokenLocked.json lst_staking_token_locked
+generate_contracts ../olas-lst/abis/0.8.30/Collector.json lst_collector
+generate_contracts ../olas-lst/abis/0.8.30/ActivityModule.json lst_activity_module
+generate_contracts ../olas-lst/abis/0.8.30/Distributor.json lst_distributor
+generate_contracts ../olas-lst/abis/0.8.30/UnstakeRelayer.json lst_unstake_relayer
+generate_contracts ../olas-lst/abis/0.8.30/GnosisStakingProcessorL2.json lst_staking_processor_l2
+generate_contracts ../olas-lst/abis/0.8.30/StakingManager.json lst_staking_manager

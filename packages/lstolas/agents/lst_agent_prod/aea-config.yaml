@@ -24,7 +24,7 @@ protocols:
 - open_aea/signing:1.0.0:bafybeig2d36zxy65vd7fwhs7scotuktydcarm74aprmrb5nioiymr3yixm
 skills:
 - eightballer/prometheus:0.1.0:bafybeicl5i7e467aowfarke4bbyixo2dggar276njmvyuwbsby5pxshhtu
-- lstolas/lst_skill:0.1.0:bafybeib7w5i5unvxx7fvrb5ypao62kb2rhxvjeaqowx3b34udbwzuo453y
+- lstolas/lst_skill:0.1.0:bafybeidnr2ez26ahnpp224gyc24cis4oylxycpvklbfxjcygtpdnwkp42a
 customs: []
 default_ledger: ethereum
 required_ledgers:
@@ -97,10 +97,12 @@ type: skill
 models:
   lst_strategy:
     args:
+      l1_starting_block: 23648061
+      l2_starting_block: 42790245
       layer_1_rpc_endpoint: https://eth.drpc.org
       layer_1_amb_home: '0x4C36d2919e407f0Cc2Ee3c993ccF8ac26d9CE64e'
       layer_1_olas_address: '0x0001A500A6B18995B03f44bb040A5fFc28E45CB0'
-      layer_2_rpc_endpoint: https://gnosis.drpc.org
+      layer_2_rpc_endpoint: https://gnosis.oat.farm
       layer_2_amb_home: '0x75Df5AF045d91108662D8080fD1FEFAd6aA0bb59'
       layer_2_amb_helper: '0x7d94ece17e81355326e3359115D4B02411825EdD'
       lst_collector_address: '0x64003846B67D66AfdFb03325fa4292b76FCF182F'

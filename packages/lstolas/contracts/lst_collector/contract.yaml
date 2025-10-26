@@ -7,8 +7,8 @@ license: Apache-2.0
 aea_version: '>=1.0.0, <2.0.0'
 fingerprint:
   __init__.py: bafybeicprbtjucpjo4jmrouqcj5iij3lcuretgbobcrkd4wjjpywi5mz2e
-  build/lst_collector.json: bafybeieuyvvyswnp6l75hlnowwq34snt2absizksyunopxysmzzk7vsfna
-  contract.py: bafybeifbq3uwcai7bezftm6yf36j56kvtdpyyell6miaaotabuhnp5sqzq
+  build/lst_collector.json: bafybeihpgswed55ld63ctpzkjnjut7lyxqisieqqbwran23rvsesh3vbai
+  contract.py: bafybeicpkqq6kw2a32xclxuwoxbmwhvsn3ricio35hpsvk5rvpvoydib5q
   tests/test_lst_collector.py: bafybeidtapulxrp2dr36sye2xwyy2hllc2p73qtuh4nnndib5rk3ql5fpi
 fingerprint_ignore_patterns: []
 class_name: LstCollector

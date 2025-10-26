@@ -13,20 +13,19 @@ fingerprint:
   behaviours_classes/__init__.py: bafybeigfxtbzqrsrmdkw4xiqtryjszmonoa7fe3dkw4c3dmqwj7m7ynt3y
   behaviours_classes/base_behaviour.py: bafybeibt7wqatpktq36n66krinjuewkskb2tu4efssgz433r4xrjzuk56m
   behaviours_classes/check_any_work_round.py: bafybeibiop4dwotqngxqd4vdw2x4iz4b44m6urx4flvok6tdkaytwkdwzu
-  behaviours_classes/checkpoint_round.py: bafybeidyppcubj6fbyzpnorzsh5jo6hlwvhogjzhrxylsyeouu5xd4aryq
-  behaviours_classes/claim_bridged_tokens_round.py: bafybeiac2wbgj55fw5c577jzmp4c5g3bbiq2ifnrdfcn6wgppib6a64mta
-  behaviours_classes/claim_reward_tokens_round.py: bafybeigzfqweoglatgr4fs6tdunrw2z2wekwgqxr3ls2z6xbqy2rx6xeye
+  behaviours_classes/checkpoint_round.py: bafybeidnsyylc7kax4qv2axzqg2d6tpcnhdx3tmrztngpfmwq7hz3d764i
+  behaviours_classes/claim_bridged_tokens_round.py: bafybeigrr3rquovoreaiq6pwz4m3arulqeb7oywvkwclox35q4ao4aavae
+  behaviours_classes/claim_reward_tokens_round.py: bafybeia7d26votggvlw36wtp623unczgdmlwojqhkj4t62aeqdxrij6h64
   behaviours_classes/error_rounds.py: bafybeihtghxlbb5k6s4egdibglto7h43xk3fz7vclhrizncq5vkwzlsqu4
   behaviours_classes/finalize_bridged_tokens_round.py: bafybeifnxckqnez2apllpwlxj6rvrfat732xhorhqle3aut6wl2dr7ekxu
-  behaviours_classes/redeem_round.py: bafybeigpy5vtblbydbkxuaw5e2v5tvuiutxwzabwbopwrkepxuc7yczvre
+  behaviours_classes/redeem_round.py: bafybeigcl5hk3mhgqzct7bg3c2bt6d2gwhoqaydpqp2whkxs262lytw7m4
   behaviours_classes/starting_round.py: bafybeift5drjrtwcbssumcpfm2eczus6z6si4gppokvymhbqkfsajmhun4
   behaviours_classes/trigger_l2_to_l1_bridge.py: bafybeiac6nikhnpyveenvtzdzwxqxe5ivtayxlz5enmpcfvtsmtnnpvbwm
   behaviours_classes/waiting_round.py: bafybeiekbnjih5txvpxi75itpjfv7nr65bf7kbgd2f4tdvanbjsewdp2ma
   dialogues.py: bafybeigbpewv7jsbyaybassv47sxk7bmvbl5pg25v2inr5gc6djch75rmi
   events_processing.py: bafybeihvdc6qwmzk6pizpuwhdjb7whtevt25uicjeghxzem2qtjko2biom
   handlers.py: bafybeigxyhzux4czjkaqntqmnjcfidchf2h6sitvxx6dknpwmoucbojqgq
-  models.py: bafybeiewjxrc3r2igtf2kfo2yg3afdos6xslffifzprvu45giorxtjk36q
-  tests/__init__.py: bafybeigb2ji4vkcap3hokcedggjwsrah7te2nxjhkorwf3ibwgyaa2glma
+  models.py: bafybeihisehbnpxoyhthl63x3yaud4ouvlletxuck5op6gyz5fylmj72me
   tests/test_check_work_behaviour.py: bafybeib45mbpf7ctr5aoyltwh34pljwpsh5zqentdqxerfkqx4tqhsg5h4
   tests/test_conditional_behaviours.py: bafybeickfflcj6kw5k72w4a56xbzsiolv34vcfjkgr5o3wm4wluoztxqlm
   tests/test_fsm_behaviour.py: bafybeiellmhyw3fupa725t6yirtg3ct25vuttswvyfzwvr5k3l5x3zseby
@@ -36,13 +35,13 @@ fingerprint_ignore_patterns: []
 connections:
 - eightballer/apprise_wrapper:0.1.0:bafybeibekoqsadyztskr353x3usoxe4bmjlr45ecafmyfbxay6dc4jxcci
 contracts:
-- lstolas/lst_collector:0.1.0:bafybeid4k36qpva3rbxialkoxoyikdderfidj7sl6zx6nidfakbbebvga4
-- lstolas/lst_unstake_relayer:0.1.0:bafybeicsh2zzjov3cgmuvhm6llhvqngi4vp6na5ixzfxsvq5mtygw5mc3a
-- lstolas/lst_distributor:0.1.0:bafybeidjdpm5igddhydmjrpjsatcoshwajpfraxszegk4ujdg6sp2txcxm
-- lstolas/lst_staking_manager:0.1.0:bafybeif7utuuw562bxj7miugvouno4pwq4naivnk52m4ueiili44772dbi
-- lstolas/lst_activity_module:0.1.0:bafybeidvkc3nxfgywjhzp7oqyyighy2smstirs2eubg6tk6lhe334izcri
-- lstolas/lst_staking_token_locked:0.1.0:bafybeiftbu2o4nx2jj6kbkr2u5zc5z46suivqiq4dzb23i6osbc3xcflya
-- lstolas/lst_staking_processor_l2:0.1.0:bafybeicekkydfkbq3fcxihqzllchv636habhuunlvn7bukt33l3y36mtna
+- lstolas/lst_collector:0.1.0:bafybeiacozfuo5d4banesijrla7bruijmu3n6se2xefjrgvbkxpafw2p5i
+- lstolas/lst_unstake_relayer:0.1.0:bafybeicbbjvul6qww6tmzttifxtvjqfjsbqriaacslesm4y77slsa3ygsi
+- lstolas/lst_distributor:0.1.0:bafybeidpvui4otijeu47zbvszfywi64u3rgv45ywrgxodmtglg3ix7giwu
+- lstolas/lst_staking_manager:0.1.0:bafybeichvenuondlet4j2svxma66h3nbau24bo4umnyxkbdjejzmyy366y
+- lstolas/lst_activity_module:0.1.0:bafybeiaq7rmkxu26yzejgvubnjdwlv7zaufhp7bylbsdeaz4t7hf2cmahq
+- lstolas/lst_staking_token_locked:0.1.0:bafybeidw4povdmyzpszkzgnw6iv3w4gnbzboqq5dolxegjptcadv26lgyy
+- lstolas/lst_staking_processor_l2:0.1.0:bafybeicm7m3vlravmbf7cyqk3x3lwjpjd3nuvhxi6srflxaei3kyxx2mza
 - eightballer/erc_20:0.1.0:bafybeig622mhgil3uq34d4l3r6moxisgvxwxtrosds2x7glx3kg5z4yqzq
 - eightballer/amb_mainnet:0.1.0:bafybeiecfrsrysggmmosj5bhboqkcyrixxtjkdj4fjcjmyu3puwtzu2zmy
 - eightballer/amb_gnosis:0.1.0:bafybeie5gqdocwsq27jt25aaqprz7mvauxrv3eczpbnbewffdjj6eotlmq
@@ -73,6 +72,8 @@ models:
     class_name: UserInteractionDialogues
   lst_strategy:
     args:
+      l1_starting_block: 9123229
+      l2_starting_block: 17590111
       layer_1_rpc_endpoint: https://eth-sepolia.api.onfinality.io/public
       layer_1_amb_home: '0xf2546D6648BD2af6a008A7e7C1542BB240329E11'
       layer_1_olas_address: '0xeb2725bD76f6b1569Cf1484fCa0f2D55714A085d'

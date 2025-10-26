@@ -23,7 +23,8 @@ packages/eightballer/connections/http_client
 packages/eightballer/connections/http_server
 packages/eightballer/connections/prometheus
 packages/eightballer/skills/prometheus
-/lst_agent/
+/lst_agent
+/lst_agent_prod
 
 packages/eightballer/protocols/user_interaction
 packages/eightballer/connections/apprise_wrapper

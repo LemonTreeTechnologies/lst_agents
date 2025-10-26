@@ -169,7 +169,7 @@ class LstActivityModule(Contract):
     ) -> JSONLike:
         """Handler method for the 'initialize' requests."""
         instance = cls.get_instance(ledger_api, contract_address)
-        return instance.functions.initialize(_multisig=multisig, _stakingProxy=staking_proxy, _serviceId=service_id)
+        return instance.functions.initialize(_multisig=multisig, _serviceId=service_id, _stakingProxy=staking_proxy)
 
     @classmethod
     def get_activity_increased_events(

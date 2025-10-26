@@ -8,7 +8,7 @@ aea_version: '>=1.0.0, <2.0.0'
 fingerprint:
   __init__.py: bafybeib637peb5pvswcr74utqhns4dw6wgiqcb6bk6q32e7kvjdtxozgdq
   build/lst_staking_manager.json: bafybeihj7czsmro42a7l6tftutxdvgguvvutfhwdatrc344dltfsyqzeue
-  contract.py: bafybeicgdtiq4mo4gdkdqjhfirsx2iwmq5q3telnu3l7rgkaa5vxt2ofui
+  contract.py: bafybeicnwph3qrn436wbqauv6wygsy2a55ppd6yioizqvs3objvvptczfu
   tests/test_lst_staking_manager.py: bafybeicfdxajzj4kkzeplnckvfwrrzibntixhmv5lxd2l3yp3fxvqcyndu
 fingerprint_ignore_patterns: []
 class_name: LstStakingManager

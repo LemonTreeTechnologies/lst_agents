@@ -32,7 +32,6 @@ def do_update():
     layer2_config = config_vars[1]
 
     for mapping, config in [(mainnet_mapping, mainnet_config), (gnosis_mapping, layer2_config)]:
-
         for config_key, contract_key in mapping.items():
             found = False
             for item in config["contracts"]:

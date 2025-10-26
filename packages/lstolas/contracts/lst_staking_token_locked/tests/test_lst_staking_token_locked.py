@@ -16,9 +16,9 @@
 #
 # ------------------------------------------------------------------------------
 
-"""This module contains the tests for the lst_staking_processor_l2 contract."""
+"""This module contains the tests for the lst_staking_token_locked contract."""
 
 
-def test_lst_staking_processor_l2_contract():
-    """Test the lst_staking_processor_l2 contract."""
+def test_lst_staking_token_locked_contract():
+    """Test the lst_staking_token_locked contract."""
     assert True
