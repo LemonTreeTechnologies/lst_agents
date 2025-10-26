@@ -300,9 +300,11 @@ class TransactionSettler(Model):
         chain_id_to_explorer = {
             11155111: "https://sepolia.etherscan.io/tx/",
             10200: "https://gnosis-chiado.blockscout.com/tx/",
+            1: "https://etherscan.io/tx/",
+            100: "https://gnosisscan.io/tx/",
         }
 
-        args = {k: esc_md2(v) for k, v in kwargs.items() if k != "attempts"}
+        args = {str(k): esc_md2(str(v)) for k, v in kwargs.items() if k != "attempts"}
         stringified_args = ", ".join(f"{k}={v}" for k, v in args.items())
 
         url = chain_id_to_explorer.get(ledger_api.api.eth.chain_id, "") + tx_hash.hex()
@@ -311,6 +313,7 @@ class TransactionSettler(Model):
         <b>Contract:</b> <code>{html.escape(contract_address)}</code><br/>
         <b>Kwargs:</b><br/><pre><code>{html.escape(stringified_args)}</code></pre>
         <a href="{html.escape(url)}">Transaction</a>
+        Chain ID: {ledger_api.api.eth.chain_id!s}
         """)
         self.log.info(msg)
         self.send_notification_to_user(title="New txn executed!", msg=msg)
@@ -325,3 +328,19 @@ class TransactionSettler(Model):
     def log(self):
         """Get the logger."""
         return self.context.logger
+
+    def simulate(self, contract_address: str, function: Callable, ledger_api: EthereumApi, **kwargs) -> bool:
+        """Simulate a transaction."""
+        self.log.info(f"Simulating transaction for contract at address: {contract_address}")
+        txn = function(
+            ledger_api,
+            contract_address,
+            **kwargs,
+        )
+        try:
+            txn.estimate_gas({"from": self.strategy.sender_address})
+            self.log.info("Simulation successful, transaction would be sent.")
+            return True
+        except Exception as e:  # pylint: disable=broad-except
+            self.log.exception(f"Simulation failed, transaction would NOT be sent. Error: {e}")
+            return False
