@@ -7,8 +7,8 @@ license: Apache-2.0
 aea_version: '>=1.0.0, <2.0.0'
 fingerprint:
   __init__.py: bafybeict6cglw3bhl7tkgj472n23sxekryej7raa5kaplmfbsodszerkbu
-  build/lst_unstake_relayer.json: bafybeieo22jbfw67bcb2khawueiiyidjsa2wcidun5ab7vk66rlhdoo36m
-  contract.py: bafybeiex76ljvjfa7ltw5mrzbjslsubn3xka5n7zs2b2rcuvm7me7indwq
+  build/lst_unstake_relayer.json: bafybeifukj7ze5wrlmygwaszqr227dkjdswhqxc2fdhry7qhw7dfu2ne24
+  contract.py: bafybeiebybhrrg7mmqyg3slhhcov7tvizs74hmcscmq3hxy3isfmfpfsde
   tests/test_lst_unstake_relayer.py: bafybeihg6m2u76jpvon3vyl7s2mhzql3vb57ljfhmscat23geg53dikm44
 fingerprint_ignore_patterns: []
 class_name: LstUnstakeRelayer

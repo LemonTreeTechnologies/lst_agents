@@ -75,6 +75,15 @@ class LstCollector(Contract):
         return {"balance": result[0], "receiver": result[1]}
 
     @classmethod
+    def map_staking_proxy_unstake_reserves(
+        cls, ledger_api: LedgerApi, contract_address: str, var_0: Address
+    ) -> JSONLike:
+        """Handler method for the 'map_staking_proxy_unstake_reserves' requests."""
+        instance = cls.get_instance(ledger_api, contract_address)
+        result = instance.functions.mapStakingProxyUnstakeReserves(var_0).call()
+        return {"int": result}
+
+    @classmethod
     def olas(
         cls,
         ledger_api: LedgerApi,
@@ -119,6 +128,17 @@ class LstCollector(Contract):
         return {"int": result}
 
     @classmethod
+    def staking_manager(
+        cls,
+        ledger_api: LedgerApi,
+        contract_address: str,
+    ) -> JSONLike:
+        """Handler method for the 'staking_manager' requests."""
+        instance = cls.get_instance(ledger_api, contract_address)
+        result = instance.functions.stakingManager().call()
+        return {"address": result}
+
+    @classmethod
     def change_implementation(
         cls, ledger_api: LedgerApi, contract_address: str, new_implementation: Address
     ) -> JSONLike:
@@ -137,6 +157,14 @@ class LstCollector(Contract):
         """Handler method for the 'change_protocol_factor' requests."""
         instance = cls.get_instance(ledger_api, contract_address)
         return instance.functions.changeProtocolFactor(newProtocolFactor=new_protocol_factor)
+
+    @classmethod
+    def change_staking_manager(
+        cls, ledger_api: LedgerApi, contract_address: str, new_staking_manager: Address
+    ) -> JSONLike:
+        """Handler method for the 'change_staking_manager' requests."""
+        instance = cls.get_instance(ledger_api, contract_address)
+        return instance.functions.changeStakingManager(newStakingManager=new_staking_manager)
 
     @classmethod
     def change_staking_processor_l2(
@@ -163,12 +191,22 @@ class LstCollector(Contract):
         return instance.functions.initialize()
 
     @classmethod
+    def rebalance_from_unstake_reserve(
+        cls, ledger_api: LedgerApi, contract_address: str, staking_proxy: Address, amount: int, operation: str
+    ) -> JSONLike:
+        """Handler method for the 'rebalance_from_unstake_reserve' requests."""
+        instance = cls.get_instance(ledger_api, contract_address)
+        return instance.functions.rebalanceFromUnstakeReserve(
+            amount=amount, operation=operation, stakingProxy=staking_proxy
+        )
+
+    @classmethod
     def relay_tokens(
         cls, ledger_api: LedgerApi, contract_address: str, operation: str, bridge_payload: str
     ) -> JSONLike:
         """Handler method for the 'relay_tokens' requests."""
         instance = cls.get_instance(ledger_api, contract_address)
-        return instance.functions.relayTokens(operation=operation, bridgePayload=bridge_payload)
+        return instance.functions.relayTokens(bridgePayload=bridge_payload, operation=operation)
 
     @classmethod
     def set_operation_receivers(
@@ -183,6 +221,14 @@ class LstCollector(Contract):
         """Handler method for the 'top_up_balance' requests."""
         instance = cls.get_instance(ledger_api, contract_address)
         return instance.functions.topUpBalance(amount=amount, operation=operation)
+
+    @classmethod
+    def top_up_unstake_reserve(
+        cls, ledger_api: LedgerApi, contract_address: str, staking_proxy: Address, amount: int
+    ) -> JSONLike:
+        """Handler method for the 'top_up_unstake_reserve' requests."""
+        instance = cls.get_instance(ledger_api, contract_address)
+        return instance.functions.topUpUnstakeReserve(amount=amount, stakingProxy=staking_proxy)
 
     @classmethod
     def get_implementation_updated_events(
@@ -356,6 +402,33 @@ class LstCollector(Contract):
         }
 
     @classmethod
+    def get_staking_manager_updated_events(
+        cls,
+        ledger_api: LedgerApi,
+        contract_address: str,
+        staking_manager: Address = None,
+        look_back: int = 1000,
+        to_block: str = "latest",
+        from_block: int | None = None,
+    ) -> JSONLike:
+        """Handler method for the 'StakingManagerUpdated' events ."""
+
+        instance = cls.get_instance(ledger_api, contract_address)
+        arg_filters = {key: value for key, value in (("stakingManager", staking_manager)) if value is not None}
+        to_block = to_block or "latest"
+        if to_block == "latest":
+            to_block = ledger_api.api.eth.block_number
+        from_block = from_block or (to_block - look_back)
+        result = instance.events.StakingManagerUpdated().get_logs(
+            fromBlock=from_block, toBlock=to_block, argument_filters=arg_filters
+        )
+        return {
+            "events": result,
+            "from_block": from_block,
+            "to_block": to_block,
+        }
+
+    @classmethod
     def get_staking_processor_updated_events(
         cls,
         ledger_api: LedgerApi,
@@ -374,6 +447,39 @@ class LstCollector(Contract):
             to_block = ledger_api.api.eth.block_number
         from_block = from_block or (to_block - look_back)
         result = instance.events.StakingProcessorUpdated().get_logs(
+            fromBlock=from_block, toBlock=to_block, argument_filters=arg_filters
+        )
+        return {
+            "events": result,
+            "from_block": from_block,
+            "to_block": to_block,
+        }
+
+    @classmethod
+    def get_staking_proxy_unstake_reserve_updated_events(
+        cls,
+        ledger_api: LedgerApi,
+        contract_address: str,
+        sender: Address = None,
+        staking_proxy: Address = None,
+        amount: int | None = None,
+        look_back: int = 1000,
+        to_block: str = "latest",
+        from_block: int | None = None,
+    ) -> JSONLike:
+        """Handler method for the 'StakingProxyUnstakeReserveUpdated' events ."""
+
+        instance = cls.get_instance(ledger_api, contract_address)
+        arg_filters = {
+            key: value
+            for key, value in (("sender", sender), ("stakingProxy", staking_proxy), ("amount", amount))
+            if value is not None
+        }
+        to_block = to_block or "latest"
+        if to_block == "latest":
+            to_block = ledger_api.api.eth.block_number
+        from_block = from_block or (to_block - look_back)
+        result = instance.events.StakingProxyUnstakeReserveUpdated().get_logs(
             fromBlock=from_block, toBlock=to_block, argument_filters=arg_filters
         )
         return {

@@ -101,17 +101,6 @@ class LstDistributor(Contract):
         return {"address": result}
 
     @classmethod
-    def total_distributed_amount(
-        cls,
-        ledger_api: LedgerApi,
-        contract_address: str,
-    ) -> JSONLike:
-        """Handler method for the 'total_distributed_amount' requests."""
-        instance = cls.get_instance(ledger_api, contract_address)
-        result = instance.functions.totalDistributedAmount().call()
-        return {"int": result}
-
-    @classmethod
     def change_implementation(
         cls, ledger_api: LedgerApi, contract_address: str, new_implementation: Address
     ) -> JSONLike:
@@ -243,7 +232,6 @@ class LstDistributor(Contract):
         olas_amount: int | None = None,
         lock_amount: int | None = None,
         vault_balance: int | None = None,
-        unlock_time_increased: bool | None = None,
         look_back: int = 1000,
         to_block: str = "latest",
         from_block: int | None = None,
@@ -258,7 +246,6 @@ class LstDistributor(Contract):
                 ("olasAmount", olas_amount),
                 ("lockAmount", lock_amount),
                 ("vaultBalance", vault_balance),
-                ("unlockTimeIncreased", unlock_time_increased),
             )
             if value is not None
         }

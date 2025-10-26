@@ -57,6 +57,17 @@ class LstStakingProcessorL2(Contract):
         return {"str": result}
 
     @classmethod
+    def collector(
+        cls,
+        ledger_api: LedgerApi,
+        contract_address: str,
+    ) -> JSONLike:
+        """Handler method for the 'collector' requests."""
+        instance = cls.get_instance(ledger_api, contract_address)
+        result = instance.functions.collector().call()
+        return {"address": result}
+
+    @classmethod
     def get_bridging_decimals(
         cls,
         ledger_api: LedgerApi,
@@ -74,7 +85,7 @@ class LstStakingProcessorL2(Contract):
         """Handler method for the 'get_queued_hash' requests."""
         instance = cls.get_instance(ledger_api, contract_address)
         result = instance.functions.getQueuedHash(
-            batchHash=batch_hash, target=target, amount=amount, operation=operation
+            amount=amount, batchHash=batch_hash, operation=operation, target=target
         ).call()
         return {"str": result}
 
@@ -167,7 +178,7 @@ class LstStakingProcessorL2(Contract):
         """Handler method for the 'queued_hashes' requests."""
         instance = cls.get_instance(ledger_api, contract_address)
         result = instance.functions.queuedHashes(var_0).call()
-        return {"bool": result}
+        return {"int": result}
 
     @classmethod
     def staking_manager(
@@ -197,12 +208,6 @@ class LstStakingProcessorL2(Contract):
         return instance.functions.drain()
 
     @classmethod
-    def migrate(cls, ledger_api: LedgerApi, contract_address: str, new_l2_target_dispenser: Address) -> JSONLike:
-        """Handler method for the 'migrate' requests."""
-        instance = cls.get_instance(ledger_api, contract_address)
-        return instance.functions.migrate(newL2TargetDispenser=new_l2_target_dispenser)
-
-    @classmethod
     def pause(
         cls,
         ledger_api: LedgerApi,
@@ -213,10 +218,10 @@ class LstStakingProcessorL2(Contract):
         return instance.functions.pause()
 
     @classmethod
-    def process_data_maintenance(cls, ledger_api: LedgerApi, contract_address: str, data: str) -> JSONLike:
-        """Handler method for the 'process_data_maintenance' requests."""
+    def receive_message(cls, ledger_api: LedgerApi, contract_address: str, data: str) -> JSONLike:
+        """Handler method for the 'receive_message' requests."""
         instance = cls.get_instance(ledger_api, contract_address)
-        return instance.functions.processDataMaintenance(data=data)
+        return instance.functions.receiveMessage(data=data)
 
     @classmethod
     def redeem(
@@ -224,15 +229,15 @@ class LstStakingProcessorL2(Contract):
     ) -> JSONLike:
         """Handler method for the 'redeem' requests."""
         instance = cls.get_instance(ledger_api, contract_address)
-        return instance.functions.redeem(batchHash=batch_hash, target=target, amount=amount, operation=operation)
+        return instance.functions.redeem(amount=amount, batchHash=batch_hash, operation=operation, target=target)
 
     @classmethod
     def relay_to_l1(
-        cls, ledger_api: LedgerApi, contract_address: str, to: Address, olas_amount: int, bridge_payload: str
+        cls, ledger_api: LedgerApi, contract_address: str, to: Address, olas_amount: int, var_2: str
     ) -> JSONLike:
         """Handler method for the 'relay_to_l1' requests."""
         instance = cls.get_instance(ledger_api, contract_address)
-        return instance.functions.relayToL1(to=to, olasAmount=olas_amount, bridgePayload=bridge_payload)
+        return instance.functions.relayToL1(var_2, olasAmount=olas_amount, to=to)
 
     @classmethod
     def unpause(
@@ -323,43 +328,6 @@ class LstStakingProcessorL2(Contract):
             to_block = ledger_api.api.eth.block_number
         from_block = from_block or (to_block - look_back)
         result = instance.events.MessageReceived().get_logs(
-            fromBlock=from_block, toBlock=to_block, argument_filters=arg_filters
-        )
-        return {
-            "events": result,
-            "from_block": from_block,
-            "to_block": to_block,
-        }
-
-    @classmethod
-    def get_migrated_events(
-        cls,
-        ledger_api: LedgerApi,
-        contract_address: str,
-        sender: Address = None,
-        new_l2_target_dispenser: Address = None,
-        amount: int | None = None,
-        look_back: int = 1000,
-        to_block: str = "latest",
-        from_block: int | None = None,
-    ) -> JSONLike:
-        """Handler method for the 'Migrated' events ."""
-
-        instance = cls.get_instance(ledger_api, contract_address)
-        arg_filters = {
-            key: value
-            for key, value in (
-                ("sender", sender),
-                ("newL2TargetDispenser", new_l2_target_dispenser),
-                ("amount", amount),
-            )
-            if value is not None
-        }
-        to_block = to_block or "latest"
-        if to_block == "latest":
-            to_block = ledger_api.api.eth.block_number
-        from_block = from_block or (to_block - look_back)
-        result = instance.events.Migrated().get_logs(
             fromBlock=from_block, toBlock=to_block, argument_filters=arg_filters
         )
         return {

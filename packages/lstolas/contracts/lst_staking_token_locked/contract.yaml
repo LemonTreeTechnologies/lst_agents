@@ -8,8 +8,8 @@ aea_version: '>=1.0.0, <2.0.0'
 fingerprint:
   __init__.py: bafybeidcnq5w2q5vc32ghuu5seqv5wd52wvlp7kkck6sithhh7mkrixbnu
   build/lst_staking_token_locked.json: bafybeiafelcef3fxqb4im7bdyhii2lcjluddvynyp4sjr3k6dbgdbromk4
-  contract.py: bafybeihxycuwxmflv64gx5lknx6fygxm2icsgwadf6j7risphu4dejh3vm
-  tests/test_lst_staking_token_locked.py: bafybeig76yjwslj4gwzzrb5qinam5ajh5oh44mpigmwt5aoku5kygq65ni
+  contract.py: bafybeida7xpgvohlm53jgu4trnfpkmba4l2nbxjzhbuwiyf5awj3tarqhu
+  tests/test_lst_staking_token_locked.py: bafybeifa7wctm37rhppwenjzfb6jxvpd764oguqks6xoznsuj2zm35ssiy
 fingerprint_ignore_patterns: []
 class_name: LstStakingTokenLocked
 contract_interface_paths:

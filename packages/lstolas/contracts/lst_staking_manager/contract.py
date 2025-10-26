@@ -295,7 +295,7 @@ class LstStakingManager(Contract):
     def claim(cls, ledger_api: LedgerApi, contract_address: str, staking_proxy: Address, service_id: int) -> JSONLike:
         """Handler method for the 'claim' requests."""
         instance = cls.get_instance(ledger_api, contract_address)
-        return instance.functions.claim(stakingProxy=staking_proxy, serviceId=service_id)
+        return instance.functions.claim(serviceId=service_id, stakingProxy=staking_proxy)
 
     @classmethod
     def initialize(
@@ -309,9 +309,9 @@ class LstStakingManager(Contract):
         """Handler method for the 'initialize' requests."""
         instance = cls.get_instance(ledger_api, contract_address)
         return instance.functions.initialize(
+            _fallbackHandler=fallback_handler,
             _safeMultisig=safe_multisig,
             _safeSameAddressMultisig=safe_same_address_multisig,
-            _fallbackHandler=fallback_handler,
         )
 
     @classmethod
@@ -328,7 +328,7 @@ class LstStakingManager(Contract):
     ) -> JSONLike:
         """Handler method for the 'stake' requests."""
         instance = cls.get_instance(ledger_api, contract_address)
-        return instance.functions.stake(stakingProxy=staking_proxy, amount=amount, operation=operation)
+        return instance.functions.stake(amount=amount, operation=operation, stakingProxy=staking_proxy)
 
     @classmethod
     def unstake(
@@ -336,7 +336,7 @@ class LstStakingManager(Contract):
     ) -> JSONLike:
         """Handler method for the 'unstake' requests."""
         instance = cls.get_instance(ledger_api, contract_address)
-        return instance.functions.unstake(stakingProxy=staking_proxy, amount=amount, operation=operation)
+        return instance.functions.unstake(amount=amount, operation=operation, stakingProxy=staking_proxy)
 
     @classmethod
     def get_claimed_events(

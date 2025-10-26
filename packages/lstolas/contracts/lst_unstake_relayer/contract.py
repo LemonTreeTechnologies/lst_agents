@@ -68,17 +68,6 @@ class LstUnstakeRelayer(Contract):
         return {"address": result}
 
     @classmethod
-    def total_relayed_amount(
-        cls,
-        ledger_api: LedgerApi,
-        contract_address: str,
-    ) -> JSONLike:
-        """Handler method for the 'total_relayed_amount' requests."""
-        instance = cls.get_instance(ledger_api, contract_address)
-        result = instance.functions.totalRelayedAmount().call()
-        return {"int": result}
-
-    @classmethod
     def change_implementation(
         cls, ledger_api: LedgerApi, contract_address: str, new_implementation: Address
     ) -> JSONLike:

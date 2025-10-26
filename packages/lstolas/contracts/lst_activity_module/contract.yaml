@@ -8,7 +8,7 @@ aea_version: '>=1.0.0, <2.0.0'
 fingerprint:
   __init__.py: bafybeihpqwcoooyfnamqteab54u3zrhspldtcdve73ircfvnpmvx3mxvyu
   build/lst_activity_module.json: bafybeiep5cfdeo4gjkw5fjsmrhwxrttcnhd6fpvvvyf56xa7h6kkbfcadu
-  contract.py: bafybeiemgoif5cwiiqh34iggyrpahpbgvnbdhhdtug54uk4wnzwbzwqj4a
+  contract.py: bafybeifibd3vfzufawgyw5knhhlxri77gisc5mhlkzlmpyk33dmib26yxm
   tests/test_lst_activity_module.py: bafybeibx6f65u7j3su72lu6lb4wsmuh5biltjlvryvsskfm2ajrhm64xr4
 fingerprint_ignore_patterns: []
 class_name: LstActivityModule
