@@ -1,6 +1,7 @@
 """Behaviour class for the state RedeemRound of the LstAbciApp."""
 
 from enum import Enum
+from textwrap import dedent
 
 from pydantic import BaseModel
 
@@ -30,6 +31,7 @@ class PendingRequest(BaseModel):
     amount: int
     operation: str
     status: OperationStatus
+    block_number: int
 
 
 class RedeemRound(BaseState):
@@ -79,11 +81,10 @@ class RedeemRound(BaseState):
                 self.strategy.layer_2_api,
                 self.strategy.lst_staking_processor_l2_address,
                 from_block=self.strategy.layer_2_starting_block
-                if self.last_completed_block is None
-                else self.last_completed_block,
+                if self.last_scanned_block is None
+                else self.last_scanned_block,
             )
         )
-        self.last_scanned_block = queued_requests.to_block
         if queued_requests.events:
             self.log.info(f"Found {len(queued_requests.events)} queued requests to be processed.")
             potential_events_to_process = [
@@ -93,19 +94,21 @@ class RedeemRound(BaseState):
                     amount=event.args.amount,
                     operation="0x" + event.args.operation.hex(),
                     status=OperationStatus(event.args.status),
+                    block_number=event.blockNumber,
                 )
                 for event in queued_requests.events
             ]
 
+            oldest_blocks: list[int] = [self.strategy.layer_2_api.api.eth.block_number]
             for event in potential_events_to_process:
-                if event.status is not OperationStatus.INSUFFICIENT_OLAS_BALANCE:
-                    self.log.info(
-                        f"Request with batch hash {event.batch_hash} has status {event.status} and will be skipped."
-                    )
-                    continue
                 self.send_notification_to_user(
                     title="Redeem request detected",
-                    msg=f"Detected a redeem request with batch hash {event.batch_hash}. Attempting to process it.",
+                    msg=dedent(f"""
+                    Detected a redeem request with batch hash {event.batch_hash}. Attempting to process it.
+                    Chain ID: {self.strategy.layer_2_api.api.eth.chain_id}
+                    Contract Address: {self.strategy.lst_staking_processor_l2_address}
+                    Block Number: {event.block_number}
+                    """),
                 )
                 self.context.logger.info(f"Checking on event: {event}")
 
@@ -122,21 +125,39 @@ class RedeemRound(BaseState):
                     .hex()  # type: ignore
                 )
                 # we now check if the request is still queued
-                is_still_queued = self.strategy.lst_staking_processor_l2_contract.queued_hashes(
-                    self.strategy.layer_2_api,
-                    self.strategy.lst_staking_processor_l2_address,
-                    "0x" + queued_hash,
-                ).get("bool")
-                if is_still_queued:
-                    self.events_to_process.append(event)
+                request_status = OperationStatus(
+                    self.strategy.lst_staking_processor_l2_contract.queued_hashes(
+                        self.strategy.layer_2_api,
+                        self.strategy.lst_staking_processor_l2_address,
+                        "0x" + queued_hash,
+                    ).get("int")
+                )
+
+                if request_status != OperationStatus.NON_EXISTENT:
                     self.log.info(
-                        f"Request with batch hash {event.batch_hash} is state: {is_still_queued} and will be processed."
+                        f"Request with batch hash {event.batch_hash} is still queued with status {request_status}."
                     )
+
+                    will_txn_be_sent = self.tx_settler.simulate(
+                        contract_address=self.strategy.lst_staking_processor_l2_address,
+                        function=self.strategy.lst_staking_processor_l2_contract.redeem,
+                        ledger_api=self.strategy.layer_2_api,
+                        batch_hash=event.batch_hash,
+                        target=event.target,
+                        amount=event.amount,
+                        operation=event.operation,
+                    )
+
+                    if will_txn_be_sent:
+                        self.events_to_process.append(event)
+                        self.log.info(
+                            f"Request with batch hash {event.batch_hash} is state: {request_status} and will be sent."
+                        )
+                    else:
+                        oldest_blocks.append(event.block_number)
                 else:
-                    self.log.info(
-                        f"Request with batch hash {event.batch_hash} is no longer queued and will be skipped."
-                    )
+                    self.log.info(f"Request with batch hash {event.batch_hash} is no ready yet checked next iteration.")
+            self.last_scanned_block = min(oldest_blocks)
             if self.events_to_process:
                 return True
-        self.last_completed_block = self.last_scanned_block
         return False
