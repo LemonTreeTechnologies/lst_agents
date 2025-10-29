@@ -1,6 +1,7 @@
 **/__pycache__/**
 .nix-venv
 .env
+.env*
 .hypothesis/
 .coverage
 .pytest_cache
