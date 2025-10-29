@@ -101,15 +101,6 @@ class RedeemRound(BaseState):
 
             oldest_blocks: list[int] = [self.strategy.layer_2_api.api.eth.block_number]
             for event in potential_events_to_process:
-                self.send_notification_to_user(
-                    title="Redeem request detected",
-                    msg=dedent(f"""
-                    Detected a redeem request with batch hash {event.batch_hash}. Attempting to process it.
-                    Chain ID: {self.strategy.layer_2_api.api.eth.chain_id}
-                    Contract Address: {self.strategy.lst_staking_processor_l2_address}
-                    Block Number: {event.block_number}
-                    """),
-                )
                 self.context.logger.info(f"Checking on event: {event}")
 
                 queued_hash = (
@@ -149,6 +140,15 @@ class RedeemRound(BaseState):
                     )
 
                     if will_txn_be_sent:
+                        self.send_notification_to_user(
+                            title="Redeem request detected",
+                            msg=dedent(f"""
+                            Detected a redeem request with batch hash {event.batch_hash}. Attempting to process it.
+                            Chain ID: {self.strategy.layer_2_api.api.eth.chain_id}
+                            Contract Address: {self.strategy.lst_staking_processor_l2_address}
+                            Block Number: {event.block_number}
+                            """),
+                        )
                         self.events_to_process.append(event)
                         self.log.info(
                             f"Request with batch hash {event.batch_hash} is state: {request_status} and will be sent."
