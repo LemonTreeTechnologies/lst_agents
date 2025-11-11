@@ -104,6 +104,9 @@ class LstStrategy(Model):
     # token contract address
     layer_1_olas_token_address: Address
 
+    # configuration
+    bridging_enabled: bool
+
     def __init__(self, **kwargs):
         """Initialize the strategy of the lst agent."""
         self.layer_1_api = EthereumApi(address=kwargs.pop("layer_1_rpc_endpoint"))
@@ -122,6 +125,7 @@ class LstStrategy(Model):
         self.layer_2_amb_helper = kwargs.pop("layer_2_amb_helper")
 
         self.layer_1_olas_token_address = kwargs.pop("layer_1_olas_address")
+        self.bridging_enabled = kwargs.pop("bridging_enabled", True)
 
         super().__init__(**kwargs)
 
