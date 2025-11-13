@@ -40,7 +40,13 @@ spec:
           {{- end }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
-          command:  ["adev",  "run",  "dev",  "--no-use-tendermint", "--force", "lstolas/lst_agent_prod"]
+          command:
+            - /bin/sh
+            - -c
+            - |
+                echo -n "$ETH_KEY" > ethereum_private_key.txt
+                exec adev run dev --no-use-tendermint --force lstolas/lst_agent_prod
+
           env:
           {{- range $k, $v := .Values.environment }}
             - name: {{ $k }}
