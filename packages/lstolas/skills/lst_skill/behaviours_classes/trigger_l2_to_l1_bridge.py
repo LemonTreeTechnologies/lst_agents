@@ -73,6 +73,10 @@ class TriggerL2ToL1BridgeRound(BaseState):
 
     def is_triggered(self) -> bool:
         """Check if the state is triggered."""
+
+        if not self.strategy.bridging_enabled:
+            self.log.info("Bridging is disabled in the configuration, skipping bridge trigger.")
+            return False
         if self.has_already_run_today():
             self.log.info("Bridge has already been triggered today, skipping.")
             return False

@@ -20,12 +20,12 @@ fingerprint:
   behaviours_classes/finalize_bridged_tokens_round.py: bafybeifnxckqnez2apllpwlxj6rvrfat732xhorhqle3aut6wl2dr7ekxu
   behaviours_classes/redeem_round.py: bafybeiansmwfn7y5gh7kh55brskmh7gpbwevebrelhxooovmrpndm5yagq
   behaviours_classes/starting_round.py: bafybeift5drjrtwcbssumcpfm2eczus6z6si4gppokvymhbqkfsajmhun4
-  behaviours_classes/trigger_l2_to_l1_bridge.py: bafybeiac6nikhnpyveenvtzdzwxqxe5ivtayxlz5enmpcfvtsmtnnpvbwm
+  behaviours_classes/trigger_l2_to_l1_bridge.py: bafybeiezcju4gpuxoimuijsn6txozfhzsbhjeg7r55bofiis5xnxufyou4
   behaviours_classes/waiting_round.py: bafybeiekbnjih5txvpxi75itpjfv7nr65bf7kbgd2f4tdvanbjsewdp2ma
   dialogues.py: bafybeigbpewv7jsbyaybassv47sxk7bmvbl5pg25v2inr5gc6djch75rmi
   events_processing.py: bafybeihvdc6qwmzk6pizpuwhdjb7whtevt25uicjeghxzem2qtjko2biom
   handlers.py: bafybeigxyhzux4czjkaqntqmnjcfidchf2h6sitvxx6dknpwmoucbojqgq
-  models.py: bafybeibzv5axz7g47km2hyt3tpzypglsqiyzmhb7ddzt2xe5rblqy4r3xe
+  models.py: bafybeic26c7i6i4boisihgxbnwafphfsmdlttd6loe6dns3svreyjayaxu
   tests/test_check_work_behaviour.py: bafybeib45mbpf7ctr5aoyltwh34pljwpsh5zqentdqxerfkqx4tqhsg5h4
   tests/test_conditional_behaviours.py: bafybeickfflcj6kw5k72w4a56xbzsiolv34vcfjkgr5o3wm4wluoztxqlm
   tests/test_fsm_behaviour.py: bafybeiellmhyw3fupa725t6yirtg3ct25vuttswvyfzwvr5k3l5x3zseby
@@ -85,6 +85,7 @@ models:
       lst_distributor_address: '0x99817C87A9E85E30632365D288e4833cD2003B8b'
       lst_staking_manager_address: '0xc6c586763399A5716c91961F0D208928a9950ba2'
       lst_staking_processor_l2_address: '0x7341bff68aa4F93E636C9D88AaA7c9E6dceD527d'
+      bridging_enabled: false
     class_name: LstStrategy
   tx_settler:
     args: {}
