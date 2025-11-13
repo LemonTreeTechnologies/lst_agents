@@ -40,6 +40,12 @@ spec:
           {{- end }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
+          command:  ["adev",  "run",  "dev",  "--no-use-tendermint", "--force", "lstolas/lst_agent_prod"]
+          env:
+          {{- range $k, $v := .Values.environment }}
+            - name: {{ $k }}
+              value: "{{ $v }}"
+          {{- end }}
           ports:
             - name: http
               containerPort: {{ .Values.service.port }}
@@ -50,6 +56,10 @@ spec:
           {{- end }}
           {{- with .Values.readinessProbe }}
           readinessProbe:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+          {{- with .Values.resources }}
+          startupProbe:
             {{- toYaml . | nindent 12 }}
           {{- end }}
           {{- with .Values.resources }}
