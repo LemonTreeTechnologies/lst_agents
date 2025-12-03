@@ -92,6 +92,8 @@ token_id-"component_id"
 192-"protocol/valory/srr/0.1.0"
 193-"connection/valory/twitter/0.1.0"
 194-"connection/valory/farcaster/0.1.0"
+198-"protocol/eightballer/user_interaction/0.1.0"
+200-"connection/eightballer/apprise_wrapper/0.1.0"
 
 # agents
 24-agent/eightballer/collateralisation_station/0.1.0
@@ -129,6 +131,19 @@ token_id-"component_id"
 
 # pending-mints
 
+302-contract/eightballer/amb_mainnet/0.1.0
+303-contract/eightballer/amb_gnosis/0.1.0
+304-contract/eightballer/amb_gnosis_helper/0.1.0
+305-contract/lstolas/lst_distributor/0.1.0
+306-contract/lstolas/lst_activity_module/0.1.0
+307-contract/lstolas/lst_staking_manager/0.1.0
+308-contract/lstolas/lst_staking_processor_l2/0.1.0
+309-contract/lstolas/lst_unstake_relayer/0.1.0
+310-contract/lstolas/lst_collector/0.1.0
+311-contract/lstolas/lst_staking_token_locked/0.1.0
+
 298-skill/lstolas/lst_skill/0.1.0
 69-agent/lstolas/lst_agent/0.1.0
+85-agent/lstolas/lst_agent_prod/0.1.0
+55-service/lstolas/lst_service/0.1.0
 

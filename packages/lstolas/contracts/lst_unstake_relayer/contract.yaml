@@ -2,7 +2,7 @@ name: lst_unstake_relayer
 author: lstolas
 version: 0.1.0
 type: contract
-description: The scaffold contract scaffolds a contract to be implemented by the developer.
+description: The contract interacts with the LST unstake relayer.
 license: Apache-2.0
 aea_version: '>=1.0.0, <2.0.0'
 fingerprint:
