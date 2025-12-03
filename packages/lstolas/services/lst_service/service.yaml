@@ -1,7 +1,7 @@
 name: lst_service
 author: lstolas
 version: 0.1.0
-description: A serivice that provides LST related functionalities.
+description: A service that provides LST related functionalities.
 aea_version: '>=1.0.0, <2.0.0'
 license: apache-2.0
 fingerprint:
