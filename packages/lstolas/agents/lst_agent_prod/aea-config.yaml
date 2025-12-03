@@ -2,7 +2,7 @@ agent_name: lst_agent_prod
 author: lstolas
 version: 0.1.0
 license: Apache-2.0
-description: ''
+description: The lst agent
 aea_version: '>=1.55.0, <2.0.0'
 fingerprint:
   logger_setup.py: bafybeicboqnvizlhdsnmlncvayrswskbyw6vshi34bnrs75qshbz3wdlqu
@@ -24,7 +24,7 @@ protocols:
 - open_aea/signing:1.0.0:bafybeig2d36zxy65vd7fwhs7scotuktydcarm74aprmrb5nioiymr3yixm
 skills:
 - eightballer/prometheus:0.1.0:bafybeicl5i7e467aowfarke4bbyixo2dggar276njmvyuwbsby5pxshhtu
-- lstolas/lst_skill:0.1.0:bafybeifsekin3guesvnjxy2npl5k4rerasx2csfeopr3ejuyo4eiiqyegm
+- lstolas/lst_skill:0.1.0:bafybeiaf7dydl5espynfg6zzvhyrucm7w33rff6l7dhkx5s5ufna2ofu4a
 customs: []
 default_ledger: ethereum
 required_ledgers:
