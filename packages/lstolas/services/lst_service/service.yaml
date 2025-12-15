@@ -1,0 +1,40 @@
+name: lst_service
+author: lstolas
+version: 0.1.0
+description: A service that provides LST related functionalities.
+aea_version: '>=1.0.0, <2.0.0'
+license: apache-2.0
+fingerprint:
+  __init__.py: bafybeifdc5tk6topwmcviejgkm3lmrhnhk6fqqvh76hv7xwg3qkhxifznm
+  tests/__init__.py: bafybeiausykbndof27hjfgwqg6nnmk7zw7lyytwzekih3gszwdypbtxjka
+  tests/test_service.py: bafybeicplirjoql5q3l5zjl5xrgamnoxuj3year7u2vrtfnzzllzeyutuy
+fingerprint_ignore_patterns: []
+agent: lstolas/lst_agent_prod:0.1.0:bafybeielqbzzuzdnbvrbdjhu7vuxfrg3i7mmzej37vzfysiwttbvz4qczq
+number_of_agents: 1
+deployment:
+  agent:
+    ports: {}
+    volumes: {}
+---
+public_id: eightballer/http_server:0.1.0:bafybeicp3ubkonolxjgnwgqmaz624qduwzzz74fbjizu77lyvnpo77uv7u
+type: connection
+config:
+  host: 0.0.0.0
+  port: 8888
+  target_skill_id: lstolas/lst_abci_app:0.1.0
+---
+public_id: eightballer/apprise_wrapper:0.1.0
+type: connection
+config:
+  endpoints:
+  - ${APPRISE_ENDPOINT:str:null}
+---
+public_id: lstolas/lst_skill:0.1.0:bafybeib7w5i5unvxx7fvrb5ypao62kb2rhxvjeaqowx3b34udbwzuo453y
+type: skill
+models:
+  lst_strategy:
+    args:
+      l1_starting_block: 23648061
+      l2_starting_block: 42790245
+      layer_1_rpc_endpoint: ${LAYER_1_RPC:str:https://mainnet.gateway.tenderly.co}
+      layer_2_rpc_endpoint: ${LAYER_2_RPC:str:https://gnosis.drpc.org}
