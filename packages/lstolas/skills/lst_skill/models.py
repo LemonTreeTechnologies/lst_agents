@@ -45,7 +45,7 @@ from packages.lstolas.contracts.lst_staking_token_locked.contract import LstStak
 
 ROOT = Path(__file__).parent.parent.parent.parent
 
-GAS_PREMIUM = 1.5  # multiplier to add to the gas price
+GAS_PREMIUM = 1.05  # multiplier to add to the gas price
 TX_MINING_TIMEOUT = 300  # seconds
 TXN_ATTEMPTS = 3  # number of attempts to send a transaction
 

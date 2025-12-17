@@ -11,10 +11,10 @@
         "contract/eightballer/amb_gnosis_helper/0.1.0": "bafybeibvut56ycxfnwocqsdts7ijuizs5bjummabmhtxsiprwpb7uv2oxm",
         "contract/eightballer/erc_20/0.1.0": "bafybeid3yc6ixt4xm72ik2tlec5rvgdy2dmcjbddbwbpjewx42wgtocgbe",
         "contract/lstolas/lst_staking_token_locked/0.1.0": "bafybeiayv2q75a5q2vs2ynxah6sf2d26mi6hdgnrd6wgcphmbwl65wct3m",
-        "skill/lstolas/lst_skill/0.1.0": "bafybeiaf7dydl5espynfg6zzvhyrucm7w33rff6l7dhkx5s5ufna2ofu4a",
-        "agent/lstolas/lst_agent/0.1.0": "bafybeicjepbracoeyg7iispthpgjqqhb5at5fpvf45t6eyb2xtzwauwd3y",
-        "agent/lstolas/lst_agent_prod/0.1.0": "bafybeielqbzzuzdnbvrbdjhu7vuxfrg3i7mmzej37vzfysiwttbvz4qczq",
-        "service/lstolas/lst_service/0.1.0": "bafybeia5ydax4whiquie3hbzzmq4obj2zlhs6n4t5gsv3wyumkztcwk5jy"
+        "skill/lstolas/lst_skill/0.1.0": "bafybeibv6jwe3rz7prvnfui6c6dhsxapzw6eil3bnhjwj2qzvwu4jtwyji",
+        "agent/lstolas/lst_agent/0.1.0": "bafybeicvlgyvvqjv4tez6r3dkpw36hk2q7bcikf4iaumhiibzoqko3cozq",
+        "agent/lstolas/lst_agent_prod/0.1.0": "bafybeibxbvnlph6za3p65bs7e6e7hmchgwxgph2md5jjwbf45bf4in2m5e",
+        "service/lstolas/lst_service/0.1.0": "bafybeiaa33z4irqljav66yuqrksgi6s2edummpcnmhgubdxij7joyixc7i"
     },
     "third_party": {
         "protocol/open_aea/signing/1.0.0": "bafybeig2d36zxy65vd7fwhs7scotuktydcarm74aprmrb5nioiymr3yixm",

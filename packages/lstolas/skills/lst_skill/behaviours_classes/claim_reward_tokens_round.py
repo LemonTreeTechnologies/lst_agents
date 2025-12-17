@@ -22,6 +22,7 @@ class ClaimRewardTokensRound(BaseState):
     def act(self) -> None:
         """Perform the act."""
         self.log.info("Claiming reward tokens...")
+        errors = []
         while self.claimable_activity_modules:
             contract_address = self.claimable_activity_modules.pop()
             if not self.tx_settler.build_and_settle_transaction(
@@ -29,10 +30,10 @@ class ClaimRewardTokensRound(BaseState):
                 function=self.strategy.lst_activity_module_contract.claim,
                 ledger_api=self.strategy.layer_2_api,
             ):
+                errors.append(contract_address)
                 self.log.error("Transaction failed to be sent...")
-                self._event = LstabciappEvents.FATAL_ERROR
-                self._is_done = True
-                return
+        if errors:
+            self.log.error(f"Failed to claim rewards for activity modules at addresses: {errors}")
         self._event = LstabciappEvents.DONE
         self._is_done = True
 
