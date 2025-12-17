@@ -1,5 +1,11 @@
 # Changelog
 
+## [v0.1.7](https://github.com/LemonTreeTechnologies/lst_agents/tree/v0.1.7) (2025-12-17)
+
+**Merged pull requests:**
+
+- feat/minting [\#5](https://github.com/LemonTreeTechnologies/lst_agents/pull/5)
+
 ## [v0.1.6](https://github.com/LemonTreeTechnologies/lst_agents/tree/v0.1.6) (2025-11-13)
 
 ## [v0.1.5](https://github.com/LemonTreeTechnologies/lst_agents/tree/v0.1.5) (2025-11-13)
