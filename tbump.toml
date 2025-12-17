@@ -20,3 +20,5 @@ tag_template = "v{new_version}"
 src = "pyproject.toml"
 [[file]]
 src = ".github/workflows/release.yml"
+[[file]]
+src = "charts/lstolas/values.yaml"
