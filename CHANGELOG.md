@@ -1,5 +1,9 @@
 # Changelog
 
+## [v0.1.10](https://github.com/LemonTreeTechnologies/lst_agents/tree/v0.1.10) (2025-12-17)
+
+## [v0.1.9](https://github.com/LemonTreeTechnologies/lst_agents/tree/v0.1.9) (2025-12-17)
+
 ## [v0.1.7](https://github.com/LemonTreeTechnologies/lst_agents/tree/v0.1.7) (2025-12-17)
 
 **Merged pull requests:**
